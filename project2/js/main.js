@@ -89,4 +89,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
     setClock('.timer', deadline);
+
+    // Модальные окна
+
+    const btnModal = document.querySelectorAll('[data-model]'),
+          btnlWindowClose = document.querySelector('[data-close]'),
+          modalWindow = document.querySelector('.modal');
+
+    btnModal.forEach(btn =>{
+        btn.addEventListener('click', (event)=>{
+            modalWindow.classList.toggle('show');
+            // modalWindow.classList.add('show');
+            // modalWindow.classList.remove('hide');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    
+    function closeModal(){
+        modalWindow.classList.toggle('show');
+        // modalWindow.classList.add('hide');
+        // modalWindow.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+
+    btnlWindowClose.addEventListener('click', closeModal);
+
+    modalWindow.addEventListener('click', (event)=>{
+        if(event.target === modalWindow){
+            closeModal();
+        }
+    });
+
+    document.addEventListener('keydown', (event) =>{
+        if (event.code === 'Escape' && modalWindow.classList.contains('show')){
+            closeModal();
+        }
+        
+    });
+
+   
 });
