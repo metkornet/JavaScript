@@ -96,21 +96,23 @@ document.addEventListener('DOMContentLoaded', () => {
           btnlWindowClose = document.querySelector('[data-close]'),
           modalWindow = document.querySelector('.modal');
 
-    btnModal.forEach(btn =>{
-        btn.addEventListener('click', (event)=>{
-            modalWindow.classList.toggle('show');
-            // modalWindow.classList.add('show');
-            // modalWindow.classList.remove('hide');
-            document.body.style.overflow = 'hidden';
-        });
-    });
-    
+
+    function openModel(){
+        modalWindow.classList.toggle('show');
+        document.body.style.overflow = 'hidden';
+    }
+
     function closeModal(){
         modalWindow.classList.toggle('show');
-        // modalWindow.classList.add('hide');
-        // modalWindow.classList.remove('show');
         document.body.style.overflow = '';
+        clearInterval(modalTimerId);
     }
+
+
+    btnModal.forEach(btn =>{
+        btn.addEventListener('click', openModel);
+    });
+    
 
     btnlWindowClose.addEventListener('click', closeModal);
 
@@ -124,8 +126,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.code === 'Escape' && modalWindow.classList.contains('show')){
             closeModal();
         }
-        
     });
 
-   
+   //создание появления модального окна через определенное количество времени (15 секунд)
+
+   const modalTimerId = setTimeout(openModel, 5000);
+
+   // создание появления модального окна, когда пользователь долистал страницу до конца
+    function showModalByScroll(){
+        if(window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight){
+        openModel();
+        window.removeEventListener('scroll', showModalByScroll);
+        }
+    }
+
+   window.addEventListener('scroll', showModalByScroll);
 });
