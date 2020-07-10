@@ -12,7 +12,7 @@ inputRUB.addEventListener('input', (event)=>{
             const data = JSON.parse(request.response);
             inputUSD.value = (+inputRUB.value/ data.current.usd).toFixed(2);
         } else{
-            inputUSD.value = "Что-то пошдо не так";
+            inputUSD.value = "Что-то пошло не так";
         }
     });
 });
