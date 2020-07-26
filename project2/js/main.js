@@ -369,12 +369,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     next.addEventListener('click', ()=>{
 
-        if(offset == +width.slice(0, width.length - 2) * (slides.length - 1)){
+        if(offset == Replace(width) * (slides.length - 1)){
             offset = 0;
             slideIndex = 1;
             
         } else{
-            offset += +width.slice(0, width.length - 2);
+            offset += Replace(width);
             slideIndex ++;
 
         }
@@ -386,10 +386,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     prev.addEventListener('click', ()=>{
         if(offset == 0){
-            offset = +width.slice(0, width.length - 2) * (slides.length - 1);
+            offset = Replace(width) * (slides.length - 1);
             slideIndex = slides.length;
         } else{
-            offset -= +width.slice(0, width.length - 2);
+            offset -= Replace(width);
             slideIndex --;
         }
         dotsMassive.forEach(slides=>slides.classList.remove('active_dot'));
@@ -402,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dot.addEventListener('click', event =>{
             const slideTo = event.target.getAttribute('data-slide-to');
             slideIndex = slideTo;
-            offset = +width.slice(0, width.length - 2) * (slideTo - 1);
+            offset = Replace(width) * (slideTo - 1);
             slidesField.style.transform = `translateX(-${offset}px)`;
             current.innerHTML = getZero(slideIndex);
             dotsMassive.forEach(slides=>slides.classList.remove('active_dot'));
@@ -411,7 +411,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-
+    function Replace(str){
+        return  +str.replace(/\D/g, '');
+    }
     
 
 });
