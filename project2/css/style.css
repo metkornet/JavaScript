@@ -605,13 +605,15 @@ a{
     margin:0 auto
 }
 
-.hide{
-    display: none;
-}
 
 .show{
     display: block;
 }
+
+.hide{
+    display: none;
+}
+
 
 .fade{
     animation-name: fade;
