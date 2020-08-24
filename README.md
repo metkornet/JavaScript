@@ -39,4 +39,9 @@
 * работа с библиотекой Redux (createStore)
 * dispatch, subscribe
 
-## Первое приложение Redux+React (react/?)
+## Первое приложение Redux+React (react/first-redux-react-app)
+* такой же счетчик, но в связке с React
+* provider, connect, actions and etc
+
+## Второе приложение Redux+React (react/restoran)
+
